@@ -1,0 +1,20 @@
+<mat-drawer-container class="container" autosize [hasBackdrop]="true">
+    <mat-drawer #drawer  [mode]="'over'" class="example-sidenav" mode="side">
+        <p>Pokemon</p>
+
+        <div class="hola">
+            hola
+        </div>
+
+    </mat-drawer>
+
+    <button class="menu" type="button" mat-icon-button (click)="drawer.toggle()">
+        <i class="material-icons">arrow_forward_ios</i>     
+    </button>
+
+    <div class="content">
+        <app-card *ngFor="let pokemon of listaPokemon" [data]="pokemon"></app-card>
+        <!-- <div class="a" *ngFor="let pokemon of listaPokemon"> a</div> -->
+    </div>
+
+</mat-drawer-container>    

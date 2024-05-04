@@ -1,17 +1,30 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { HomeComponent } from './Pages/home/home.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatIconModule} from '@angular/material/icon';
+import { FilterCompComponent } from './Components/filter-comp/filter-comp.component';
+import {MatCardModule} from '@angular/material/card';
+import { CardComponent } from './Components/card/card.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    FilterCompComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatCardModule
   ],
   providers: [
     provideClientHydration(),
