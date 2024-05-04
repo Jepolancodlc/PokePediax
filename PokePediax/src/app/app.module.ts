@@ -10,7 +10,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { FilterCompComponent } from './Components/filter-comp/filter-comp.component';
 import {MatCardModule} from '@angular/material/card';
 import { CardComponent } from './Components/card/card.component';
-import { PkdetailComponent } from './Pages/home/pkdetail/pkdetail.component';
+import { PkdetailComponent } from './Pages/pkdetail/pkdetail.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { PkdetailComponent } from './Pages/home/pkdetail/pkdetail.component';
     HomeComponent,
     FilterCompComponent,
     CardComponent,
-    PkdetailComponent
+    PkdetailComponent,
   ],
   imports: [
     BrowserModule,
