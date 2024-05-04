@@ -5,22 +5,21 @@ import { Resultado } from '../../Interfaces/pokeApi';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-  
-  listaPokemon:Resultado[] = []
+  listaPokemon: Resultado[] = [];
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
-    console.log("hola");
-    
     this.cargarLista();
   }
 
-  async cargarLista(){
-    this.listaPokemon = [...this.listaPokemon, ...await this.pokemonService.getPokemonList(100)]
+  async cargarLista() {
+    this.listaPokemon = [
+      ...this.listaPokemon,
+      ...(await this.pokemonService.getPokemonList(100)),
+    ];
   }
-
 }

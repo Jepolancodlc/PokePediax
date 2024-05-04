@@ -10,13 +10,15 @@ import {MatIconModule} from '@angular/material/icon';
 import { FilterCompComponent } from './Components/filter-comp/filter-comp.component';
 import {MatCardModule} from '@angular/material/card';
 import { CardComponent } from './Components/card/card.component';
+import { PkdetailComponent } from './Pages/home/pkdetail/pkdetail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     FilterCompComponent,
-    CardComponent
+    CardComponent,
+    PkdetailComponent
   ],
   imports: [
     BrowserModule,

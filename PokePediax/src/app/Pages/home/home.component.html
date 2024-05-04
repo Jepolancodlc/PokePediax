@@ -13,8 +13,7 @@
     </button>
 
     <div class="content">
-        <app-card *ngFor="let pokemon of listaPokemon" [data]="pokemon"></app-card>
-        <!-- <div class="a" *ngFor="let pokemon of listaPokemon"> a</div> -->
+        <app-card *ngFor="let pokemon of listaPokemon" [data]="pokemon"  [routerLink]="['/pokemon', pokemon.name]"></app-card>
     </div>
 
 </mat-drawer-container>    
