@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Observable, map, startWith } from 'rxjs';
 import { Resultado } from '../Interfaces/pokeApi';
 import { Pokemon } from '../Interfaces/pokemon';
 
@@ -6,7 +8,13 @@ import { Pokemon } from '../Interfaces/pokemon';
   providedIn: 'root',
 })
 export class PokemonService {
-  constructor() {}
+  listaPokemon: Resultado[] = [];
+  myControl = new FormControl('');
+  filteredOptions: Observable<Resultado[]> | undefined;
+
+  constructor() {
+    this.cargarLista();
+  }
 
   //GET https://pokeapi.co/api/v2/{endpoint}/
 
@@ -39,5 +47,20 @@ export class PokemonService {
       throw error;
     }
   }
-  
+
+  async cargarLista() {
+    this.listaPokemon = await this.getPokemonList(100);
+
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map((value) => this._filter(value || ''))
+    );
+  }
+
+  private _filter(value: string): Resultado[] {
+    const filterValue = value.toLowerCase();
+    return this.listaPokemon.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(filterValue)
+    );
+  }
 }
