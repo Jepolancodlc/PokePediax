@@ -3,8 +3,8 @@
         <mat-label>Pokemon</mat-label>
         <input type="text" placeholder="Search for a Pokemon" aria-label="Pokemon" matInput
             [formControl]="pokemonService.myControl" [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let pokemon of pokemonService.filteredOptions | async" [value]="pokemon.name">
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onPokemonSelected($event)">
+                <mat-option *ngFor="let pokemon of pokemonService.filteredOptions | async" [value]="pokemon.name">
                 {{ pokemon.name }}
             </mat-option>
         </mat-autocomplete>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokemonService } from '../../Services/pokemon.service';
 import { Pokemon } from '../../Interfaces/pokemon';
+import { switchMap } from 'rxjs/internal/operators/switchMap';
 
 @Component({
   selector: 'app-pkdetail',
@@ -15,14 +16,15 @@ export class PkdetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private pokemonService: PokemonService) {}
 
   async ngOnInit(): Promise<void> {
-    this.route.paramMap.subscribe((params) => {
-      this.nombrePokemon = params.get('nombre');
-    });
-
-    try {
-      this.pokemonSelect = await this.pokemonService.getPokemonById(this.nombrePokemon!);
-    } catch (error) {
-      console.error('Error fetching Pokemon details:', error);
-    }
+      this.route.paramMap.pipe(
+        switchMap(params => {
+            this.nombrePokemon = params.get('nombre');
+            return this.pokemonService.getPokemonById(this.nombrePokemon!);
+        })
+    ).subscribe(pokemon => {
+        this.pokemonSelect = pokemon;
+    }, error => {
+        console.error('Error fetching Pokemon details:', error);
+    })
   }
 }
