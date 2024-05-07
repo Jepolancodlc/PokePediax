@@ -13,7 +13,6 @@ export class FiltersComponent {
 
   onPokemonSelected(event: MatAutocompleteSelectedEvent) {
     const pokemonName = event.option.value;
-    // Aquí puedes redirigir a la página que desees, por ejemplo:
     this.router.navigate([`/pokemon/${pokemonName}`]);
   }
 }
