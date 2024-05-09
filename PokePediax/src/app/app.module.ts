@@ -16,6 +16,7 @@ import { HomeComponent } from './Pages/home/home.component';
 import { PkdetailComponent } from './Pages/pkdetail/pkdetail.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -38,8 +39,8 @@ import { AppComponent } from './app.component';
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    MatInputModule
-    
+    MatInputModule,
+    MatCheckboxModule
   ],
   providers: [
     provideClientHydration(),

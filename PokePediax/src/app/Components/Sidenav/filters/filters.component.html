@@ -1,7 +1,8 @@
 <section>
     <div class="bt-home">
         <button [routerLink]="['']">
-            <img src="https://raw.githubusercontent.com/Jepolancodlc/PokePediax/dev/PokePediax/src/assets/Images/Logo-solid.png" />
+            <img
+                src="https://raw.githubusercontent.com/Jepolancodlc/PokePediax/dev/PokePediax/src/assets/Images/Logo-solid.png" />
         </button>
     </div>
 </section>
@@ -10,10 +11,16 @@
     <mat-form-field class="example-full-width">
         <input type="text" placeholder="Search for a Pokemon" aria-label="Pokemon" matInput
             [formControl]="pokemonService.myControl" [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onPokemonSelected($event)">
-                <mat-option *ngFor="let pokemon of pokemonService.filteredOptions | async" [value]="pokemon.name">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onPokemonSelected($event)">
+            <mat-option *ngFor="let pokemon of pokemonService.filteredOptions | async" [value]="pokemon.name">
                 {{ pokemon.name }}
             </mat-option>
         </mat-autocomplete>
     </mat-form-field>
 </form>
+
+<mat-checkbox *ngFor="let option of pokemonService.options" [(ngModel)]="option.checked"
+    (change)="pokemonService.updateSelectedOptions(option)"
+    [disabled]="pokemonService.disableCheckboxes && !option.checked">
+    {{option.value}}
+</mat-checkbox>

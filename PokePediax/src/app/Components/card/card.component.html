@@ -3,6 +3,8 @@
         <mat-card-title-group>
             <mat-card-title *ngIf="data">{{data.name | titlecase}}</mat-card-title>
             <mat-card-subtitle *ngIf="data">Nº {{idPadStart}} </mat-card-subtitle>
+            <mat-card-subtitle *ngIf="data">{{data.types[0] | titlecase}} </mat-card-subtitle>
+            <mat-card-subtitle *ngIf="data">{{data.types[1] | titlecase}} </mat-card-subtitle>
             <img mat-card-sm-image class="pokeImg" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{id}}.png">
         </mat-card-title-group>
     </mat-card-header>

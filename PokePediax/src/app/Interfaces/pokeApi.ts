@@ -3,3 +3,8 @@ export interface Resultado {
   url: string;
   types: string[]; // Nuevo campo para almacenar los tipos del Pokémon
 }
+
+export interface Option {
+  value: string;
+  checked: boolean;
+}

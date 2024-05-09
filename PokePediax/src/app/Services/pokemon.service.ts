@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable, map, startWith } from 'rxjs';
-import { Resultado } from '../Interfaces/pokeApi';
+import { Observable, combineLatest, map, of, startWith } from 'rxjs';
+import { Option, Resultado } from '../Interfaces/pokeApi';
 import { Pokemon } from '../Interfaces/pokemon';
 
 @Injectable({
@@ -15,16 +15,6 @@ export class PokemonService {
   constructor() {
     this.cargarLista();
   }
-
-  //GET https://pokeapi.co/api/v2/{endpoint}/
-
-  // async getByPage(): Promise<Resultado[]> {
-  //   const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
-  //   const resJson = await res.json();
-  //   if (resJson.results.lenght > 0) {
-  //     return resJson.results;
-  //   } else return [];
-  // }
 
   async getPokemonList(limit: number) {
     try {
@@ -65,18 +55,76 @@ export class PokemonService {
   }
 
   async cargarLista() {
-    this.listaPokemon = await this.getPokemonList(100);
-
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => this._filter(value || ''))
+    this.listaPokemon = await this.getPokemonList(1000);
+    console.log(this.tiposSelecionados);
+    
+    this.filteredOptions = combineLatest([
+      this.myControl.valueChanges.pipe(startWith('')),
+      of(this.tiposSelecionados)
+    ]).pipe(
+      map(([value, _]) => this._filter(value || ''))
     );
   }
 
   private _filter(value: string): Resultado[] {
     const filterValue = value.toLowerCase();
     return this.listaPokemon.filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(filterValue)
+      pokemon.name.toLowerCase().includes(filterValue) &&
+      this._checkSelectedTypes(pokemon)
+    );
+  }
+  
+private _checkSelectedTypes(pokemon: Resultado): boolean {
+  // Si no hay tipos seleccionados, siempre retorna true
+  if (this.tiposSelecionados.length === 0) {
+    return true;
+  }
+  
+  // Verificar si el pokemon tiene ambos tipos seleccionados
+  return this.tiposSelecionados.every(selectedType => pokemon.types.includes(selectedType));
+}
+  
+  options: Option[] = [
+    { value: 'fire', checked: false },
+    { value: 'normal', checked: false },
+    { value: 'grass', checked: false },
+    { value: 'water', checked: false },
+    { value: 'electric', checked: false },
+    { value: 'ice', checked: false },
+    { value: 'fighting', checked: false },
+    { value: 'poison', checked: false },
+    { value: 'ground', checked: false },
+    { value: 'flying', checked: false },
+    { value: 'psychic', checked: false },
+    { value: 'bug', checked: false },
+    { value: 'rock', checked: false },
+    { value: 'ghost', checked: false },
+    { value: 'dark', checked: false },
+    { value: 'dragon', checked: false },
+    { value: 'steel', checked: false },
+    { value: 'fairy', checked: false },
+  ];
+
+  disableCheckboxes = false;
+  tiposSelecionados: string[] = [];
+
+
+  updateSelectedOptions(optionClicked: Option) {
+    const selectedCount = this.options.filter((option) => option.checked).length;
+    this.disableCheckboxes = selectedCount >= 2;
+  
+    this.tiposSelecionados = this.options
+      .filter((option) => option.checked)
+      .map((option) => option.value);
+    
+    console.log(this.tiposSelecionados);
+  
+    // Actualizar la lista de Pokémon
+    this.filteredOptions = combineLatest([
+      this.myControl.valueChanges.pipe(startWith('')),
+      of(this.tiposSelecionados)
+    ]).pipe(
+      map(([value, _]) => this._filter(value || ''))
     );
   }
 }
