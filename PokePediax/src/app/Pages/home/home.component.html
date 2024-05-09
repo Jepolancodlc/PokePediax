@@ -1,0 +1,1 @@
+<app-card *ngFor="let pokemon of pokemonService.filteredOptions | async" [data]="pokemon" [routerLink]="['/pokemon', pokemon.name]"></app-card>
