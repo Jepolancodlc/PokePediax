@@ -11,7 +11,6 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { FiltersComponent } from './Components/Sidenav/filters/filters.component';
 import { CardComponent } from './Components/card/card.component';
-import { FilterCompComponent } from './Components/filter-comp/filter-comp.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { PkdetailComponent } from './Pages/pkdetail/pkdetail.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +22,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
   declarations: [
     AppComponent,
     HomeComponent,
-    FilterCompComponent,
     CardComponent,
     PkdetailComponent,
     FiltersComponent,

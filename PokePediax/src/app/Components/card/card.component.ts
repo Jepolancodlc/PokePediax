@@ -1,31 +1,21 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { Resultado } from '../../Interfaces/pokeApi';
 import { PokemonService } from '../../Services/pokemon.service';
+import { Pokemon } from '../../Interfaces/pokemon';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrl: './card.component.scss'
+  styleUrl: './card.component.scss',
 })
 export class CardComponent {
-  @Input() data?:Resultado;
-  id:string = '0'
-  idPadStart = '0'
-
-  constructor(private pokemonService: PokemonService){}
+  @Input() data?: Resultado;
+  id?: string;
+  idPadStart = '0';
+  pokemonSelect?: Pokemon;
 
   ngOnChanges(changes: SimpleChanges): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
-    this.extraerInfo()
-    this.idPadStart = this.id.padStart(4, "0");
-
+    this.id = this.data?.id;
+    this.idPadStart = (this.id ?? '').toString().padStart(4, '0');
   }
-  extraerInfo(){
-    if(this.data?.url){
-      // this.id = this.data.url.substring(34, this.data.url.length-1)
-      this.id = this.data.url.split('/')[6]
-    }
-  }
-
 }

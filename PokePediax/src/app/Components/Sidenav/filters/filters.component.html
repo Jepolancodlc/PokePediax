@@ -19,8 +19,6 @@
     </mat-form-field>
 </form>
 
-<mat-checkbox *ngFor="let option of pokemonService.options" [(ngModel)]="option.checked"
-    (change)="pokemonService.updateSelectedOptions(option)"
-    [disabled]="pokemonService.disableCheckboxes && !option.checked">
+<mat-checkbox *ngFor="let option of pokemonService.options" [(ngModel)]="option.checked" (change)="pokemonService.updateSelectedOptions(option)" [disabled]="pokemonService.disableCheckboxes && !option.checked">
     {{option.value}}
 </mat-checkbox>

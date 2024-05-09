@@ -18,9 +18,7 @@ export class PokemonService {
 
   async getPokemonList(limit: number) {
     try {
-      const response = await fetch(
-        `https://pokeapi.co/api/v2/pokemon?limit=${limit}`
-      );
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`);
       const data = await response.json();
 
       // Mapear la respuesta para obtener los detalles de cada Pokémon
@@ -30,6 +28,7 @@ export class PokemonService {
           const pokemonData = await pokemonDataResponse.json();
           const types = pokemonData.types.map((type: any) => type.type.name);
           return {
+            id: pokemonData.id,
             name: pokemon.name,
             url: pokemon.url,
             types: types,
@@ -56,34 +55,35 @@ export class PokemonService {
 
   async cargarLista() {
     this.listaPokemon = await this.getPokemonList(1000);
-    console.log(this.tiposSelecionados);
-    
+    console.log(this.listaPokemon);
+
     this.filteredOptions = combineLatest([
       this.myControl.valueChanges.pipe(startWith('')),
-      of(this.tiposSelecionados)
-    ]).pipe(
-      map(([value, _]) => this._filter(value || ''))
-    );
+      of(this.tiposSelecionados),
+    ]).pipe(map(([value, _]) => this._filter(value || '')));
   }
 
   private _filter(value: string): Resultado[] {
     const filterValue = value.toLowerCase();
-    return this.listaPokemon.filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(filterValue) &&
-      this._checkSelectedTypes(pokemon)
+    return this.listaPokemon.filter(
+      (pokemon) =>
+        pokemon.name.toLowerCase().includes(filterValue) &&
+        this._checkSelectedTypes(pokemon)
     );
   }
-  
-private _checkSelectedTypes(pokemon: Resultado): boolean {
-  // Si no hay tipos seleccionados, siempre retorna true
-  if (this.tiposSelecionados.length === 0) {
-    return true;
+
+  private _checkSelectedTypes(pokemon: Resultado): boolean {
+    // Si no hay tipos seleccionados, siempre retorna true
+    if (this.tiposSelecionados.length === 0) {
+      return true;
+    }
+
+    // Verificar si el pokemon tiene ambos tipos seleccionados
+    return this.tiposSelecionados.every((selectedType) =>
+      pokemon.types.includes(selectedType)
+    );
   }
-  
-  // Verificar si el pokemon tiene ambos tipos seleccionados
-  return this.tiposSelecionados.every(selectedType => pokemon.types.includes(selectedType));
-}
-  
+
   options: Option[] = [
     { value: 'fire', checked: false },
     { value: 'normal', checked: false },
@@ -108,23 +108,22 @@ private _checkSelectedTypes(pokemon: Resultado): boolean {
   disableCheckboxes = false;
   tiposSelecionados: string[] = [];
 
-
   updateSelectedOptions(optionClicked: Option) {
-    const selectedCount = this.options.filter((option) => option.checked).length;
+    const selectedCount = this.options.filter(
+      (option) => option.checked
+    ).length;
     this.disableCheckboxes = selectedCount >= 2;
-  
+
     this.tiposSelecionados = this.options
       .filter((option) => option.checked)
       .map((option) => option.value);
-    
+
     console.log(this.tiposSelecionados);
-  
+
     // Actualizar la lista de Pokémon
     this.filteredOptions = combineLatest([
       this.myControl.valueChanges.pipe(startWith('')),
-      of(this.tiposSelecionados)
-    ]).pipe(
-      map(([value, _]) => this._filter(value || ''))
-    );
+      of(this.tiposSelecionados),
+    ]).pipe(map(([value, _]) => this._filter(value || '')));
   }
 }
