@@ -10,15 +10,15 @@
 <form class="example-form">
     <mat-form-field class="example-full-width">
         <input type="text" placeholder="Search for a Pokemon" aria-label="Pokemon" matInput
-            [formControl]="pokemonService.myControl" [matAutocomplete]="auto">
+            [formControl]="svcFilterService.myControl" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onPokemonSelected($event)">
-            <mat-option *ngFor="let pokemon of pokemonService.filteredOptions | async" [value]="pokemon.name">
+            <mat-option *ngFor="let pokemon of svcFilterService.filteredOptions | async" [value]="pokemon.name">
                 {{ pokemon.name }}
             </mat-option>
         </mat-autocomplete>
     </mat-form-field>
 </form>
 
-<mat-checkbox *ngFor="let option of pokemonService.options" [(ngModel)]="option.checked" (change)="pokemonService.updateSelectedOptions(option)" [disabled]="pokemonService.disableCheckboxes && !option.checked">
+<mat-checkbox *ngFor="let option of svcFilterService.options" [(ngModel)]="option.checked" (change)="svcFilterService.updateSelectedOptions(option)" [disabled]="svcFilterService.disableCheckboxes && !option.checked">
     {{option.value}}
 </mat-checkbox>
