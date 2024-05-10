@@ -8,4 +8,5 @@ export interface Resultado {
 export interface Option {
   value: string;
   checked: boolean;
+  emblem: string;
 }

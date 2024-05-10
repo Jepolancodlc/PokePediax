@@ -16,6 +16,8 @@ import { PkdetailComponent } from './Pages/pkdetail/pkdetail.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatButtonToggleModule,
+    MatTooltipModule,
   ],
   providers: [
     provideClientHydration(),

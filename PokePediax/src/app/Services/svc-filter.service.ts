@@ -14,32 +14,36 @@ export class SvcFilterService {
   disableCheckboxes = false;
   tiposSelecionados: string[] = [];
   options: Option[] = [
-    { value: 'fire', checked: false },
-    { value: 'normal', checked: false },
-    { value: 'grass', checked: false },
-    { value: 'water', checked: false },
-    { value: 'electric', checked: false },
-    { value: 'ice', checked: false },
-    { value: 'fighting', checked: false },
-    { value: 'poison', checked: false },
-    { value: 'ground', checked: false },
-    { value: 'flying', checked: false },
-    { value: 'psychic', checked: false },
-    { value: 'bug', checked: false },
-    { value: 'rock', checked: false },
-    { value: 'ghost', checked: false },
-    { value: 'dark', checked: false },
-    { value: 'dragon', checked: false },
-    { value: 'steel', checked: false },
-    { value: 'fairy', checked: false },
-  ];
-  
+    'fire',
+    'water',
+    'grass',
+    'electric',
+    'ice',
+    'fighting',
+    'poison',
+    'ground',
+    'flying',
+    'psychic',
+    'bug',
+    'rock',
+    'ghost',
+    'dark',
+    'dragon',
+    'steel',
+    'fairy',
+    'normal',
+  ].map((value) => ({
+    value,
+    checked: false,
+    emblem: `assets/Images/tipos_logos/${value}.png`,
+  }));
+
   constructor(public pokemonService: PokemonService) {
     this.cargarLista();
   }
 
   async cargarLista() {
-    this.listaPokemon = await this.pokemonService.getPokemonList(1000);
+    this.listaPokemon = await this.pokemonService.getPokemonList(300);
     console.log(this.listaPokemon);
 
     this.filteredOptions = combineLatest([

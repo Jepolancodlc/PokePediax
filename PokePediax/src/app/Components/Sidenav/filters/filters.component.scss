@@ -1,18 +1,46 @@
-.bt-home{
-    width: 100%;
-    margin-bottom: 10%;
+.bt-home {
+  width: 100%;
+  margin-bottom: 10%;
 
-    button{
-      background-color: transparent;
-      border-color: transparent ;
-      cursor: pointer;
-    }
-
-    img{
-      width: 100%;
-    }:hover{
-      background-color: violet;
-      border-color: blueviolet ;
-      cursor: pointer;
-    }
+  button {
+    background-color: transparent;
+    border-color: transparent;
+    cursor: pointer;
   }
+
+  img {
+    width: 100%;
+  }
+  :hover {
+    background-color: violet;
+    border-color: blueviolet;
+    cursor: pointer;
+  }
+}
+
+input[type="checkbox"] {
+  display: none; /* Oculta el checkbox estándar */
+}
+
+.lb_checkbox {
+  cursor: pointer;
+}
+
+.imagen-container {
+  display: inline;
+
+  img {
+    width: 50px;
+    height: auto;
+    transition: filter 0.3s ease; // Transición suave
+  }
+}
+
+.imagen-container img:hover,
+.lb_checkbox.selected .imagen-container img {
+  filter: none; /* Elimina el filtro */
+}
+
+.imagen-container img:not(:hover):not(.lb_checkbox.selected .imagen-container img) {
+  filter: grayscale(100%); /* Convierte la imagen en blanco y negro */
+}
