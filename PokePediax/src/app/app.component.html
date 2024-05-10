@@ -1,13 +1,11 @@
 <mat-drawer-container class="container" autosize [hasBackdrop]="true">
-    <mat-drawer #drawer [mode]="'side'" class="example-sidenav">
-
+    <mat-drawer #drawer [mode]="'side'" class="sidenav">
         <div>
             <app-filters></app-filters>
         </div>
-
     </mat-drawer>
 
-    <button class="menu" type="button" mat-icon-button (click)="drawer.toggle()">
+    <button class="arrow_menu" type="button" mat-icon-button (click)="drawer.toggle()">
         <i class="material-icons">arrow_forward_ios</i>
     </button>
 

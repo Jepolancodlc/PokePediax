@@ -1,1 +1,10 @@
-<app-card *ngFor="let pokemon of svcFilterService.filteredOptions | async" [data]="pokemon" [routerLink]="['/pokemon', pokemon.name]"></app-card>
+<mat-grid-list cols="4" rowHeight="2:1">
+    <ng-container *ngFor="let pokemon of svcFilterService.filteredOptions | async; let i = index">
+      <mat-grid-tile>
+        <div class="card-wrapper">
+          <app-card class="card" [data]="pokemon" [routerLink]="['/pokemon', pokemon.name]"></app-card>
+        </div>
+      </mat-grid-tile>
+    </ng-container>
+  </mat-grid-list>
+  
