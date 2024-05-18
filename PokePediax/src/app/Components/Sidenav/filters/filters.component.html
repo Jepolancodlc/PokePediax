@@ -19,11 +19,14 @@
 </form>
 
 <div class="image-grid">
-    <label class="lb_checkbox" *ngFor="let option of svcFilterService.options" [class.selected]="option.checked" matTooltip="{{option.value | titlecase}}">
-        <input type="checkbox" [(ngModel)]="option.checked" (change)="svcFilterService.updateSelectedOptions(option)" [disabled]="svcFilterService.disableCheckboxes && !option.checked">
+    <label class="lb_checkbox" *ngFor="let basicInfo of svcFilterService.basicInfo" [class.selected]="basicInfo.checked"
+        matTooltip="{{basicInfo.value | titlecase}}">
+        <input type="checkbox" [(ngModel)]="basicInfo.checked"
+            (change)="svcFilterService.updateSelectedOptions(basicInfo)"
+            [disabled]="svcFilterService.disableCheckboxes && !basicInfo.checked">
 
         <div class="imagen-container">
-            <img class="emblemImg" src="{{option.emblem}}" alt="{{option.value}}" width="15px">
+            <img class="emblemImg" src="{{basicInfo.emblem}}" alt="{{basicInfo.value}}" width="15px">
         </div>
     </label>
 </div>

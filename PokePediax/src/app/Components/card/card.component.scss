@@ -11,47 +11,61 @@
     flex-direction: column;
     justify-content: space-between;
     position: relative; /* Necesario para posicionamiento absoluto de .pokemon-number */
-  }
-  
-  .card-header {
+}
+
+.card-header {
     padding-top: 10px;
     justify-content: space-between;
     align-items: center;
     height: 50px;
-  }
-  
-  .pokemon-name {
+}
+
+.pokemon-name {
     font-weight: bold;
     font-size: 16px;
     white-space: nowrap; /* Prevent text from wrapping */
     overflow: hidden;
     text-overflow: ellipsis; /* Add ellipsis if the text is too long */
-  }
-  
-  .pokemon-number {
+}
+
+.pokemon-number {
     color: white;
     position: absolute;
     top: 40px;
     padding: 2px 5px; /* Ajusta el padding según sea necesario */
     font-size: 12px; /* Ajusta el tamaño de la fuente según sea necesario */
     border-radius: 0px 8px 8px 0px; /* Ajusta el radio de borde según sea necesario */
-  }
-  
-  .pokemon-image {
+}
+
+.pokemon-image {
     width: 80px;
     height: 80px;
     object-fit: contain;
     margin: 0 auto;
-  }
-  
-  .card-body {
+}
+
+.card-body {
     padding: 10px;
-  }
-  
-  .pokemon-type {
+}
+
+.pokemon-type {
     color: white;
     padding: 5px 10px;
     margin: 5px 0;
     border-radius: 12px;
-  }
-  
+}
+
+.pokemon-type-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pokemon-type-content i {
+    margin-right: 5px; /* Espacio entre el icono y el texto */
+}
+
+.pokemon-type-content span {
+    flex-grow: 1;
+    text-align: center; /* Centrar el texto dentro del contenedor */
+}

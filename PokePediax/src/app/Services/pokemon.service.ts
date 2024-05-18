@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Observable, combineLatest, map, of, startWith } from 'rxjs';
-import { Option, Resultado } from '../Interfaces/pokeApi';
+import { Resultado } from '../Interfaces/pokeApi';
 import { Pokemon } from '../Interfaces/pokemon';
 
 @Injectable({

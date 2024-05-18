@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { PokemonService } from '../../Services/pokemon.service';
 import { SvcFilterService } from '../../Services/svc-filter.service';
 
 @Component({

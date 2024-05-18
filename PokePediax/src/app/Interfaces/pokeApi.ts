@@ -5,7 +5,7 @@ export interface Resultado {
   types: string[]; // Nuevo campo para almacenar los tipos del Pokémon
 }
 
-export interface Option {
+export interface BasicInfo {
   value: string;
   checked: boolean;
   emblem: string;

@@ -1,17 +1,25 @@
-<div class="card" *ngIf="data" [style.border-color]="svcFilterService.getColorForType(data.types[0])">
+<div class="card" *ngIf="data" [style.border-color]="svcFilterService.getColorForType(data.types[0]).color">
 
-    <div class="card-header" *ngIf="data" [style.color]="svcFilterService.getColorForType(data.types[0])">
+    <div class="card-header" *ngIf="data" [style.color]="svcFilterService.getColorForType(data.types[0]).color">
         <div class="pokemon-name" *ngIf="data">{{data.name | titlecase}} </div>
-        <div class="pokemon-number" *ngIf="data"   [style.background-color]="svcFilterService.getColorForType(data.types[0])">{{idPadStart}} </div>
+        <div class="pokemon-number" *ngIf="data" [style.background-color]="svcFilterService.getColorForType(data.types[0]).color">{{idPadStart}} </div>
     </div>
     <img class="pokemon-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{id}}.png">
 
     <div class="card-body">
         <div class="pokemon-type" *ngIf="data"
-            [style.background-color]="svcFilterService.getColorForType(data.types[0])">{{data.types[0] | titlecase}}
+            [style.background-color]="svcFilterService.getColorForType(data.types[0]).color">
+            <div class="pokemon-type-content">
+                <i [ngClass]="'fa-solid ' + svcFilterService.getColorForType(data.types[0]).icon"></i>
+                <span>{{data.types[0] | titlecase}}</span>
+            </div>
         </div>
         <div class="pokemon-type" *ngIf="data && data.types[1]"
-            [style.background-color]="svcFilterService.getColorForType(data.types[1])"> {{data.types[1] | titlecase}}
+            [style.background-color]="svcFilterService.getColorForType(data.types[1]).color">
+            <div class="pokemon-type-content">
+                <i [ngClass]="'fa-solid ' + svcFilterService.getColorForType(data.types[1]).icon"></i>
+                <span>{{data.types[1] | titlecase}}</span>
+            </div>
         </div>
     </div>
 </div>

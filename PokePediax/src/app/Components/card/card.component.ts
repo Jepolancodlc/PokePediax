@@ -1,6 +1,5 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { Resultado } from '../../Interfaces/pokeApi';
-import { PokemonService } from '../../Services/pokemon.service';
 import { Pokemon } from '../../Interfaces/pokemon';
 import { SvcFilterService } from '../../Services/svc-filter.service';
 

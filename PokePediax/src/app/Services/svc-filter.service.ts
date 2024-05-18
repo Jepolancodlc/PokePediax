@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, combineLatest, map, of, startWith } from 'rxjs';
-import { Resultado, Option } from '../Interfaces/pokeApi';
+import { BasicInfo, Resultado } from '../Interfaces/pokeApi';
 import { PokemonService } from './pokemon.service';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class SvcFilterService {
   filteredOptions: Observable<Resultado[]> | undefined;
   disableCheckboxes = false;
   tiposSelecionados: string[] = [];
-  options: Option[] = [
+  basicInfo: BasicInfo[] = [
     'fire',
     'water',
     'grass',
@@ -36,6 +36,8 @@ export class SvcFilterService {
     value,
     checked: false,
     emblem: `assets/Images/tipos_logos/${value}.png`,
+    color: this.getColorForType(value).color,
+    icon: this.getColorForType(value).icon,
   }));
 
   constructor(public pokemonService: PokemonService) {
@@ -73,15 +75,15 @@ export class SvcFilterService {
     );
   }
 
-  updateSelectedOptions(optionClicked: Option) {
-    const selectedCount = this.options.filter(
-      (option) => option.checked
+  updateSelectedOptions(optionClicked: BasicInfo) {
+    const selectedCount = this.basicInfo.filter(
+      (basicInfo) => basicInfo.checked
     ).length;
     this.disableCheckboxes = selectedCount >= 2;
 
-    this.tiposSelecionados = this.options
-      .filter((option) => option.checked)
-      .map((option) => option.value);
+    this.tiposSelecionados = this.basicInfo
+      .filter((basicInfo) => basicInfo.checked)
+      .map((basicInfo) => basicInfo.value);
 
     console.log(this.tiposSelecionados);
 
@@ -92,46 +94,46 @@ export class SvcFilterService {
     ]).pipe(map(([value, _]) => this._filter(value || '')));
   }
 
-  getColorForType(type: string): string {
+  getColorForType(type: string) {
     switch (type) {
       case 'grass':
-        return '#7ED957'; // Green
+        return { color: '#7ED957', icon: 'fa-solid fa-leaf' }; // Green
       case 'fire':
-        return '#FF914D'; // Orange
+        return { color: '#FF914D', icon: 'fa-solid fa-fire' }; // Orange
       case 'water':
-        return '#38B6FF'; // Blue
+        return { color: '#38B6FF', icon: 'fa-solid fa-water' }; // Blue
       case 'bug':
-        return '#3E721D'; // Green
+        return { color: '#3E721D', icon: 'fa-solid fa-bug' }; // Green
       case 'normal':
-        return '#AFAFAD'; // Gray
+        return { color: '#AFAFAD', icon: 'fa-solid fa-star' }; // Gray
       case 'poison':
-        return '#8C52FF'; // Purple
+        return { color: '#8C52FF', icon: 'fa-solid fa-skull' }; // Purple
       case 'electric':
-        return '#EFCA35'; // Yellow
+        return { color: '#EFCA35', icon: 'fa-solid fa-bolt' }; // Yellow
       case 'ground':
-        return '#9B5635'; // Brown
+        return { color: '#9B5635', icon: 'fa-solid fa-mountain' }; // Brown
       case 'fairy':
-        return '#FFC0CB'; // Pink
+        return { color: '#FFC0CB', icon: 'fa-solid fa-heart' }; // Pink
       case 'fighting':
-        return '#FF3131'; // Brown
+        return { color: '#FF3131', icon: 'fa-solid fa-fist-raised' }; // Brown
       case 'psychic':
-        return '#CB6CE6'; // Purple
+        return { color: '#CB6CE6', icon: 'fa-solid fa-brain' }; // Purple
       case 'rock':
-        return '#B2935B'; // Brown
+        return { color: '#B2935B', icon: 'fa-solid fa-gem' }; // Brown
       case 'steel':
-        return '#737373'; // Gray
+        return { color: '#737373', icon: 'fa-solid fa-shield' }; // Gray
       case 'ice':
-        return '#5CE1E6'; // Light blue
+        return { color: '#5CE1E6', icon: 'fa-solid fa-snowflake' }; // Light blue
       case 'ghost':
-        return '#3A2366'; // Purple
+        return { color: '#3A2366', icon: 'fa-solid fa-ghost' }; // Purple
       case 'dragon':
-        return '#BEDD8B'; // Purple
+        return { color: '#BEDD8B', icon: 'fa-solid fa-dragon' }; // Purple
       case 'dark':
-        return '#393838'; // Black
+        return { color: '#393838', icon: 'fa-solid fa-moon' }; // Black
       case 'flying':
-        return '#0097B2'; // Sky blue
+        return { color: '#0097B2', icon: 'fa-solid fa-feather' }; // Sky blue
       default:
-        return '#AFAFAD'; // Gray (Color por defecto si el tipo no coincide)
+        return { color: '#AFAFAD', icon: 'fa-solid fa-question-circle' }; // Gray (Icono por defecto si el tipo no coincide)
     }
   }
 }
