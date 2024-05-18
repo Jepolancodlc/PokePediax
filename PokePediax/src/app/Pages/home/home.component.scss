@@ -1,12 +1,8 @@
-.card-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-}
-
-.card {
-  width: 100%; /* Ajusta el ancho según tus necesidades */
-  height: 100%; /* Ajusta el alto según tus necesidades */
-}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    padding: 10px;
+    justify-items: center;
+  }
+  
