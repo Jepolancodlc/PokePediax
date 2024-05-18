@@ -1,52 +1,57 @@
 .card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  width: 150px;
-  height: 250px;
-  text-align: center;
-  margin: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.card-header {
-  background-color: #f8f8f8;
-  padding-top: 10px;
-  justify-content: space-between;
-  align-items: center;
-  height: 50px;
-}
-
-.pokemon-name {
-  font-weight: bold;
-  font-size: 16px;
-  white-space: nowrap; /* Prevent text from wrapping */
-  overflow: hidden;
-  text-overflow: ellipsis; /* Add ellipsis if the text is too long */
-}
-
-.pokemon-number {
-  background-color: #ffeb3b;
-  margin: 2%;
-}
-
-.pokemon-image {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  margin: 0 auto;
-}
-
-.card-body {
-  padding: 10px;
-}
-
-.pokemon-type {
-  background-color: #f1f1f1;
-  padding: 5px 10px;
-  margin: 5px 0;
-  border-radius: 12px;
-}
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 150px;
+    height: 250px;
+    text-align: center;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative; /* Necesario para posicionamiento absoluto de .pokemon-number */
+  }
+  
+  .card-header {
+    padding-top: 10px;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+  }
+  
+  .pokemon-name {
+    font-weight: bold;
+    font-size: 16px;
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis if the text is too long */
+  }
+  
+  .pokemon-number {
+    color: white;
+    position: absolute;
+    top: 40px;
+    padding: 2px 5px; /* Ajusta el padding según sea necesario */
+    font-size: 12px; /* Ajusta el tamaño de la fuente según sea necesario */
+    border-radius: 0px 8px 8px 0px; /* Ajusta el radio de borde según sea necesario */
+  }
+  
+  .pokemon-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+  
+  .card-body {
+    padding: 10px;
+  }
+  
+  .pokemon-type {
+    color: white;
+    padding: 5px 10px;
+    margin: 5px 0;
+    border-radius: 12px;
+  }
+  
