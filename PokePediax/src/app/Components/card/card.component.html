@@ -4,7 +4,10 @@
         <div class="pokemon-name" *ngIf="data">{{data.name | titlecase}} </div>
         <div class="pokemon-number" *ngIf="data" [style.background-color]="svcFilterService.getColorForType(data.types[0]).color">{{idPadStart}} </div>
     </div>
-    <img class="pokemon-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{id}}.png">
+
+    <!-- <i class="fa-bounce"> -->
+        <img class="pokemon-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{id}}.png">
+    <!-- </i> -->
 
     <div class="card-body">
         <div class="pokemon-type" *ngIf="data"

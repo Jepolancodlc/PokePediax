@@ -46,7 +46,6 @@ export class SvcFilterService {
 
   async cargarLista() {
     this.listaPokemon = await this.pokemonService.getPokemonList(300);
-    console.log(this.listaPokemon);
 
     this.filteredOptions = combineLatest([
       this.myControl.valueChanges.pipe(startWith('')),
@@ -84,8 +83,6 @@ export class SvcFilterService {
     this.tiposSelecionados = this.basicInfo
       .filter((basicInfo) => basicInfo.checked)
       .map((basicInfo) => basicInfo.value);
-
-    console.log(this.tiposSelecionados);
 
     // Actualizar la lista de Pokémon
     this.filteredOptions = combineLatest([

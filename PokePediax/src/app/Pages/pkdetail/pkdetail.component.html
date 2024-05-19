@@ -1,3 +1,9 @@
+
+<!-- pkdetail.component.html -->
+<div class="pokemon-detail" [style.background-color]="svcFilterService.getColorForType(pokemonSelect?.types?.[0]?.type?.name ?? 'Tipo no disponible' ).color">
 <h1>Detalles del Pokémon: {{ pokemonSelect?.name}}</h1>
 <h1>Detalles del Pokémon: {{ pokemonSelect?.id}}</h1>
 <h1>Detalles del Pokémon: {{ pokemonSelect?.weight}}</h1>
+
+</div>
+  
