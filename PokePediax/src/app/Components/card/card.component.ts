@@ -16,7 +16,7 @@ export class CardComponent {
 
   constructor(public svcFilterService: SvcFilterService) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.id = this.data?.id;
     this.idPadStart = (this.id ?? '').toString().padStart(4, '0');
   }

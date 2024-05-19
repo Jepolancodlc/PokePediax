@@ -1,15 +1,16 @@
+<!-- src/app/app.component.html -->
 <mat-drawer-container class="container" autosize [hasBackdrop]="true">
-    <mat-drawer #drawer [mode]="'side'" class="sidenav">
-        <div>
-            <app-filters></app-filters>
-        </div>
-    </mat-drawer>
-
-    <button class="arrow_menu" type="button" mat-icon-button (click)="drawer.toggle()">
-        <i class="fa-solid fa-caret-right fa-fade fa-2xl"></i> 
-    </button>
-
-    <div class="content">
-        <router-outlet />
+  <mat-drawer #drawer [mode]="'side'" class="sidenav">
+    <div>
+      <app-filters></app-filters>
     </div>
+  </mat-drawer>
+
+  <button class="arrow_menu" type="button" mat-icon-button (click)="drawer.toggle()">
+    <i class="fa-solid fa-caret-right fa-fade fa-2xl"></i>
+  </button>
+
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
 </mat-drawer-container>

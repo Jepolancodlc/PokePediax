@@ -6,11 +6,11 @@ import { Pokemon } from '../Interfaces/pokemon';
   providedIn: 'root',
 })
 export class PokemonService {
-  constructor() {}
-
   async getPokemonList(limit: number) {
     try {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`);
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon?limit=${limit}`
+      );
       const data = await response.json();
 
       // Mapear la respuesta para obtener los detalles de cada Pokémon

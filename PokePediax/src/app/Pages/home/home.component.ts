@@ -8,5 +8,4 @@ import { SvcFilterService } from '../../Services/svc-filter.service';
 })
 export class HomeComponent{
   constructor(public svcFilterService: SvcFilterService) {}
-  
 }
