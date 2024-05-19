@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resultado } from '../Interfaces/pokeApi';
 import { Pokemon } from '../Interfaces/pokemon';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -43,5 +44,13 @@ export class PokemonService {
       console.error(error);
       throw error;
     }
+  }
+
+  
+  public colorSubject = new BehaviorSubject<string>('white');
+  color$ = this.colorSubject.asObservable();
+
+  setColor(color: string) {
+    this.colorSubject.next(color);
   }
 }
