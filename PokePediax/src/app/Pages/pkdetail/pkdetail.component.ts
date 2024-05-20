@@ -13,6 +13,7 @@ import { SvcFilterService } from '../../Services/svc-filter.service';
 export class PkdetailComponent implements OnInit {
   nombrePokemon?: string | null;
   pokemonSelect?: Pokemon;
+  colorTipo?: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +32,7 @@ export class PkdetailComponent implements OnInit {
       .subscribe(
         (pokemon) => {
           this.pokemonSelect = pokemon;
+          this.colorTipo  = this.svcFilterService.getColorForType(this.pokemonSelect?.types?.[0]?.type?.name ?? 'Tipo no disponible' ).color
         },
         (error) => {
           console.error('Error fetching Pokemon details:', error);

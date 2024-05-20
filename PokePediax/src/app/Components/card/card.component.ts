@@ -14,7 +14,17 @@ export class CardComponent {
   idPadStart = '0';
   pokemonSelect?: Pokemon;
 
+  colorTipo1?: string;
+  colorTipo2?: string;
+
   constructor(public svcFilterService: SvcFilterService) {}
+
+  ngOnInit(): void {
+    if (this.data) {
+      this.colorTipo1 = this.svcFilterService.getColorForType(this.data.types[0]).color;
+      this.colorTipo2 = this.svcFilterService.getColorForType(this.data.types[1]).color;
+    }
+  }
 
   ngOnChanges(): void {
     this.id = this.data?.id;

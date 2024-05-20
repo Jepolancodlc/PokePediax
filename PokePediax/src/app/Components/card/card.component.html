@@ -1,8 +1,8 @@
-<div class="card" *ngIf="data" [style.border-color]="svcFilterService.getColorForType(data.types[0]).color">
+<div class="card" *ngIf="data" [style.border-color]="colorTipo1">
 
-    <div class="card-header" *ngIf="data" [style.color]="svcFilterService.getColorForType(data.types[0]).color">
+    <div class="card-header" *ngIf="data" [style.color]="colorTipo1">
         <div class="pokemon-name" *ngIf="data">{{data.name | titlecase}} </div>
-        <div class="pokemon-number" *ngIf="data" [style.background-color]="svcFilterService.getColorForType(data.types[0]).color">{{idPadStart}} </div>
+        <div class="pokemon-number" *ngIf="data" [style.background-color]="colorTipo1">{{idPadStart}} </div>
     </div>
 
     <!-- <i class="fa-bounce"> -->
@@ -11,14 +11,14 @@
 
     <div class="card-body">
         <div class="pokemon-type" *ngIf="data"
-            [style.background-color]="svcFilterService.getColorForType(data.types[0]).color">
+            [style.background-color]="colorTipo1">
             <div class="pokemon-type-content">
                 <i [ngClass]="'fa-solid ' + svcFilterService.getColorForType(data.types[0]).icon"></i>
                 <span>{{data.types[0] | titlecase}}</span>
             </div>
         </div>
         <div class="pokemon-type" *ngIf="data && data.types[1]"
-            [style.background-color]="svcFilterService.getColorForType(data.types[1]).color">
+            [style.background-color]="colorTipo2">
             <div class="pokemon-type-content">
                 <i [ngClass]="'fa-solid ' + svcFilterService.getColorForType(data.types[1]).icon"></i>
                 <span>{{data.types[1] | titlecase}}</span>
