@@ -1,9 +1,11 @@
-
-<!-- pkdetail.component.html -->
-<div class="pokemon-detail" [style.background-color]="svcFilterService.getColorForType(pokemonSelect?.types?.[0]?.type?.name ?? 'Tipo no disponible' ).color">
-<h1>Detalles del Pokémon: {{ pokemonSelect?.name}}</h1>
-<h1>Detalles del Pokémon: {{ pokemonSelect?.id}}</h1>
-<h1>Detalles del Pokémon: {{ pokemonSelect?.weight}}</h1>
-
+<div id="contenedorPadre">
+  <div id="contenedorHijo">
+    <p-galleria [value]="images" [indicatorsPosition]="'bottom'" [showIndicators]="true" [showThumbnails]="false"
+      [showIndicatorsOnItem]="showIndicatorsOnItem" [responsiveOptions]="responsiveOptions"
+      [containerStyle]="{ 'max-width': '250'}">
+      <ng-template pTemplate="item" let-item>
+        <img [src]="item.source" style="width: 250px; height: 250px; display: block;" />
+      </ng-template>
+    </p-galleria>
+  </div>
 </div>
-  

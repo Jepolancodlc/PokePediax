@@ -1,0 +1,17 @@
+#contenedorPadre {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-color: beige;
+  }
+
+  #contenedorHijo {
+    height: 100%;
+    width: 60%;
+    background-color: aqua;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  

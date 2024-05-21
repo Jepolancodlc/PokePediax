@@ -15,6 +15,10 @@ export class PkdetailComponent implements OnInit {
   pokemonSelect?: Pokemon;
   colorTipo?: string;
 
+  images: any[] = [];
+  responsiveOptions: any[] = [];
+  showIndicatorsOnItem: boolean = false;
+
   constructor(
     private route: ActivatedRoute,
     private pokemonService: PokemonService,
@@ -22,6 +26,29 @@ export class PkdetailComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
+    this.initializePokemon();
+  }
+
+  private extractSprites(sprites: any): void {
+    for (const key in sprites) {
+      if (
+        sprites[key] &&
+        typeof sprites[key] === 'string' &&
+        key.includes('front') &&
+        !sprites[key].includes('generation')
+      ) {
+        this.images.push({
+          source: sprites[key],
+          alt: `Sprite de ${key}`,
+          title: `Sprite de ${key}`,
+        });
+      } else if (sprites[key] && typeof sprites[key] === 'object') {
+        this.extractSprites(sprites[key]);
+      }
+    }
+  }
+
+  private initializePokemon(): void {
     this.route.paramMap
       .pipe(
         switchMap((params) => {
@@ -32,7 +59,17 @@ export class PkdetailComponent implements OnInit {
       .subscribe(
         (pokemon) => {
           this.pokemonSelect = pokemon;
-          this.colorTipo  = this.svcFilterService.getColorForType(this.pokemonSelect?.types?.[0]?.type?.name ?? 'Tipo no disponible' ).color
+          this.colorTipo = this.svcFilterService.getColorForType(
+            this.pokemonSelect?.types?.[0]?.type?.name ?? 'Tipo no disponible'
+          ).color;
+
+          // Limpiamos la matriz de imágenes antes de añadir nuevas imágenes
+          this.images = [];
+
+          // Extraemos todas las URLs de los sprites disponibles
+          if (this.pokemonSelect.sprites) {
+            this.extractSprites(this.pokemonSelect.sprites);
+          }
         },
         (error) => {
           console.error('Error fetching Pokemon details:', error);
